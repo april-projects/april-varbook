@@ -43,4 +43,5 @@ ENTRYPOINT ["java", "-Xmx1024m", "-Xms512m", \
            "-Dsun.stdout.encoding=UTF-8", \
            "-Dsun.stderr.encoding=UTF-8", \
            "-Dloader.path=/app/lib", \
+           "-Dspring.profiles.active=${SPRING_PROFILES_ACTIVE}", \
            "-jar", "/app/app.jar"]
