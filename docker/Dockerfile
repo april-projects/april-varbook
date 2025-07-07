@@ -19,7 +19,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 WORKDIR /app
 
 # 定义 JAR 文件和依赖库目录参数
-ARG JAR_FILE=april-varbook-backend/target/april-project.jar
+ARG JAR_FILE=april-varbook-backend/target/april-varbook.jar
 ARG LIB_DIR=april-varbook-backend/target/lib
 
 # 将 JAR 文件和依赖库目录添加到 /app 目录
