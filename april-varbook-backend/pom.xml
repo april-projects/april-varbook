@@ -61,27 +61,28 @@
     <build>
         <finalName>april-varbook</finalName>
         <!-- 资源文件配置 -->
+        <!-- 资源文件配置 -->
         <resources>
             <!-- 处理需要过滤的资源（配置文件等） -->
             <resource>
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>
+                <excludes>
+                    <!-- 排除静态资源文件，避免过滤 -->
+                    <exclude>public/**</exclude>
+                </excludes>
             </resource>
             <!-- 处理静态资源（无需过滤） -->
             <resource>
                 <directory>src/main/resources</directory>
                 <filtering>false</filtering>
+                <includes>
+                    <!-- 包含静态资源文件 -->
+                    <include>public/**</include>
+                </includes>
                 <excludes>
                     <exclude>static/node_modules/**</exclude>
                 </excludes>
-            </resource>
-            <!-- 扫描 Java 目录下的 XML 文件（如 MyBatis Mapper） -->
-            <resource>
-                <directory>src/main/java</directory>
-                <filtering>false</filtering>
-                <includes>
-                    <include>**/*.xml</include>
-                </includes>
             </resource>
         </resources>
         <!-- 插件配置 -->
