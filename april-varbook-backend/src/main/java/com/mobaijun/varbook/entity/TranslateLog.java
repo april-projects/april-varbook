@@ -42,35 +42,35 @@ public class TranslateLog implements Serializable {
     /**
      * 原始输入文本。
      */
-    @Column(name = "text_raw")
+    @Column(name = "text_raw", length = 255)
     @Schema(title = "原始输入文本")
     private String textRaw;
 
     /**
      * 请求 IP。
      */
-    @Column(name = "ip")
+    @Column(name = "ip", length = 64)
     @Schema(title = "请求 IP")
     private String ip;
 
     /**
      * User-Agent 设备信息。
      */
-    @Column(name = "user_agent")
+    @Column(name = "user_agent", length = 255)
     @Schema(title = "User-Agent 设备信息")
     private String userAgent;
 
     /**
      * 翻译结果。
      */
-    @Column(name = "translate")
+    @Column(name = "translate", columnDefinition = "text")
     @Schema(title = "翻译结果")
     private String translate;
 
     /**
      * 响应结果
      */
-    @Column(name = "response_data")
+    @Column(name = "response_data", columnDefinition = "text")
     @Schema(title = "接口响应内容")
     private String responseData;
 
