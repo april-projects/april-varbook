@@ -46,7 +46,7 @@ jobs:
       - name: Build Frontend
         run: |
           cd april-varbook-frontend
-          pnpm install --frozen-lockfile
+          pnpm install
           pnpm run build
           cd ..
 
