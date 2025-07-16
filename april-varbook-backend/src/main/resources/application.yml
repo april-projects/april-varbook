@@ -1,0 +1,70 @@
+# 服务配置
+server:
+  # 端口
+  port: 9090
+  servlet:
+    # 应用访问路径
+    context-path: /
+  tomcat:
+    # tomcat uri 编码配置
+    uri-encoding: UTF-8
+
+# spring 配置
+spring:
+  profiles:
+    active: @profiles.active@
+  application:
+    name: @project.artifactId@
+  flyway:
+    clean-disabled: true
+    baseline-on-migrate: true
+    # 取消占位符检测
+    placeholder-replacement: false
+  servlet:
+    multipart:
+      # 文件上传最大大小
+      max-file-size: 10MB
+      # 设置总上传的文件大小
+      max-request-size: 100MB
+  main:
+    # allow circular dependencies
+    allow-circular-references: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    open-in-view: false
+    database: mysql
+
+# springdoc-openapi项目配置
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+  api-docs:
+    path: /v3/api-docs
+  group-configs:
+    - group: 'default'
+      paths-to-match: '/**'
+      packages-to-scan:
+        - com.mobaijun
+# knife4j的增强配置，不需要增强可以不配
+knife4j:
+  setting:
+    language: zh_cn
+openapi:
+  title: april-varbook
+  description: 一个自动帮你取变量名称的网站
+  version: @version@
+
+# 项目日志配置
+logging:
+  file:
+    # 日志名称
+    name: ${spring.application.name}
+    # 存储地址
+    path: ${spring.application.name}-logs
+  # 日志级别
+  level:
+    root: info

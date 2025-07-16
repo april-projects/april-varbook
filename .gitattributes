@@ -1,0 +1,30 @@
+/mvnw text eol=lf
+*.cmd text eol=crlf
+# 通用文本文件（自动换行符转换）
+* text=auto
+
+# 明确指定文本文件（强制LF换行）
+*.sh text eol=lf
+*.py text eol=lf
+
+# 二进制文件（禁止差异比较/合并）
+*.jpg binary
+*.pdf binary
+*.jar binary
+
+# 语言敏感设置
+*.md diff=markdown  # Markdown文件差异优化
+*.sql diff=sql      # SQL文件差异优化
+
+# 合并策略
+package-lock.json merge=ours  # 忽略合并冲突，保留本地版本
+yarn.lock merge=ours
+
+# 导出忽略
+test/ export-ignore  # 打包时不包含测试目录
+
+*.js linguist-language=java
+*.html linguist-language=java
+
+# 强制换行符为 LF
+# * text eol=lf

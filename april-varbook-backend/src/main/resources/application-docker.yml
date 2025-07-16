@@ -1,0 +1,16 @@
+knife4j:
+  # 开启 swagger-ui
+  enable: false
+
+# 数据源配置
+spring:
+  # 数据源配置
+  datasource:
+    # 驱动类型
+    type: com.zaxxer.hikari.HikariDataSource
+    # 主库数据源
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://mysql:3306/april-varbook?autoReconnect=true&useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Hongkong&allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true}
+    # 数据库账号
+    username: ${SPRING_DATASOURCE_USERNAME:root}
+    # 密码
+    password: ${SPRING_DATASOURCE_PASSWORD:Admin1916..520}
