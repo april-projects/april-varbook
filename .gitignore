@@ -35,18 +35,10 @@ gener-logs/
 
 /workspace/logs/
 *logs/
-/april-varbook-backend/src/main/resources/public/assets/index-Bf2Hp6Dz.css
-/april-varbook-backend/src/main/resources/public/assets/index-BSI2q_eI.js
-/april-varbook-backend/src/main/resources/public/index.html
-/april-varbook-backend/src/main/resources/application-pro.yml
-/april-varbook-backend/src/main/resources/application-test.yml
-/april-varbook-frontend/dist/assets/index-Bf2Hp6Dz.css
-/april-varbook-frontend/dist/assets/index-BSI2q_eI.js
-/april-varbook-frontend/dist/index.html
-/april-varbook-frontend/node/node.exe
-/april-varbook-frontend/node/pnpm.cmd
-/april-varbook-frontend/pnpm-lock.yaml
-/april-varbook-backend/src/main/resources/public/assets/index-CBRxR4Fc.js
-/april-varbook-backend/src/main/resources/public/assets/index-CSWzSCxg.css
-/april-varbook-frontend/dist/assets/index-CBRxR4Fc.js
-/april-varbook-frontend/dist/assets/index-CSWzSCxg.css
+/docker-compose.yml
+public
+dist
+pnpm-lock.yaml
+node
+application-pro.yml
+application-test.yml

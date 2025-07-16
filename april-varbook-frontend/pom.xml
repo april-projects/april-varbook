@@ -66,7 +66,7 @@
                             <goal>pnpm</goal>
                         </goals>
                         <configuration>
-                            <arguments>dlx vite build</arguments>
+                            <arguments>build</arguments>
                         </configuration>
                     </execution>
                 </executions>
