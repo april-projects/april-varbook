@@ -1,8 +1,11 @@
 package com.mobaijun.varbook.aspect;
 
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.json.JSONUtil;
+import com.mobaijun.common.result.R;
 import com.mobaijun.varbook.entity.TranslateLog;
 import com.mobaijun.varbook.mapper.TranslateLogRepository;
+import com.mobaijun.varbook.vo.TranslateVO;
 import jakarta.servlet.http.HttpServletRequest;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -56,10 +59,12 @@ public class TranslateLogAspect {
             // 执行目标方法
             result = joinPoint.proceed();
 
-            // 设置翻译结果（只存英文，不存整个VO的JSON）
+            // 设置翻译结果
             if (result instanceof com.mobaijun.common.result.R<?> r && r.getData() instanceof com.mobaijun.varbook.vo.TranslateVO vo) {
-                log.setTranslate(vo.smallHump());
-                log.setResponseData(vo.toString());
+                log.setTranslate(vo.getSmallHump());
+                R<TranslateVO> full = R.ok(vo);
+                log.setResponseData(JSONUtil.toJsonStr(full));
+
             } else {
                 log.setTranslate("");
             }
