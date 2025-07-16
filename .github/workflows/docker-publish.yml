@@ -34,24 +34,8 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
-      - name: Install pnpm
-        run: npm install -g pnpm@8.15.5
-      - name: Cache pnpm store
-        uses: actions/cache@v3
-        with:
-          path: ~/.pnpm-store
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('april-varbook-frontend/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-
-      - name: Build Frontend
-        run: |
-          cd april-varbook-frontend
-          pnpm install
-          pnpm run build
-          cd ..
-
       - name: Maven Build
-        run: mvn -B clean package -DskipTests
+        run: mvn -B package -DskipTests
 
       - name: Set image tags
         id: vars

@@ -84,8 +84,7 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.parent.basedir}/april-varbook-backend/src/main/resources/public
-                            </outputDirectory>
+                            <outputDirectory>${project.parent.basedir}/april-varbook-backend/src/main/resources/public</outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>${project.basedir}/dist</directory>
