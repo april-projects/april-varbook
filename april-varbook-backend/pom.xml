@@ -60,8 +60,7 @@
 
     <build>
         <finalName>april-varbook</finalName>
-        <!-- 资源文件配置 -->
-        <!-- 资源文件配置 -->
+        <!-- 资源配置 -->
         <resources>
             <!-- 处理需要过滤的资源（配置文件等） -->
             <resource>
@@ -136,6 +135,23 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <!-- 清理插件：替代 maven-antrun-plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>${maven-clean-plugin.version}</version>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>src/main/resources/public</directory>
+                            <includes>
+                                <include>**/*</include>
+                            </includes>
+                            <followSymlinks>false</followSymlinks>
+                        </fileset>
+                    </filesets>
+                </configuration>
             </plugin>
         </plugins>
     </build>
