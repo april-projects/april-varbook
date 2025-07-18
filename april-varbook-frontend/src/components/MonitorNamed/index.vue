@@ -42,8 +42,27 @@ const copyData = (style, key, value) => {
   else sendNotification('复制失败', '请手动复制，您的浏览器不支持', 'warning')
 }
 
+// 计算公共前缀
+function getCommonPrefix(arr) {
+  if (!arr.length) return '';
+  let prefix = arr[0];
+  for (let i = 1; i < arr.length; i++) {
+    while (arr[i].indexOf(prefix) !== 0) {
+      prefix = prefix.slice(0, -1);
+      if (!prefix) return '';
+    }
+  }
+  return prefix;
+}
+
 const commonNames = computed(() => namedVariables.value.commonNames || [])
 const lastCopied = ref('')
+
+// 计算公共前缀和显示用后缀
+const commonPrefix = computed(() => getCommonPrefix(commonNames.value))
+const displayNames = computed(() =>
+    commonNames.value.map(name => name.slice(commonPrefix.value.length))
+)
 
 const copyCommonName = (name) => {
   if (copy.text('常用命名', name)) {
@@ -91,7 +110,7 @@ const copyCommonName = (name) => {
         @click="copyCommonName(name)"
         style="cursor:pointer;user-select:all;"
     >
-      {{ name }}<span v-if="lastCopied === name" style="margin-left: 2px;">✔</span>
+      {{ displayNames[idx] || name }}<span v-if="lastCopied === name" style="margin-left: 2px;">✔</span>
     </el-tag>
   </div>
 </template>
