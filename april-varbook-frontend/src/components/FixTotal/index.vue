@@ -18,7 +18,7 @@ onMounted(async () => {
 <template>
   <div class="total-translate">
     <div class="tips-total">
-      已累计翻译 {{ formatNumber(totalCharAct) }} 优质变量字符长度
+      💡 累计优化 {{ formatNumber(totalCharAct) }} 个变量字符，助力开发更丝滑
     </div>
     <div class="tips-bottom">
       <el-link class="translate-powered" href="https://www.mobaijun.com" target="_blank">
