@@ -48,7 +48,7 @@
     "@element-plus/icons-vue": "^2.0.6",
     "@vitejs/plugin-vue": "^2.3.3",
     "add": "^2.0.6",
-    "axios": "^0.27.2",
+    "axios": "1.8.2",
     "element-plus": "^2.2.9",
     "pinia": "^2.0.16",
     "postcss": "^8.4.14",
@@ -57,7 +57,7 @@
     "unplugin-auto-import": "^0.9.3",
     "unplugin-element-plus": "^0.4.1",
     "unplugin-vue-components": "^0.21.1",
-    "vite": "^2.9.14",
+    "vite": "6.3.4",
     "vue": "^3.2.37",
     "yarn": "^1.22.19"
   }

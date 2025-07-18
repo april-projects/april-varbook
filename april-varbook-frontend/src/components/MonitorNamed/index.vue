@@ -44,27 +44,6 @@ const copyData = (style, key, value) => {
 
 const commonNames = computed(() => namedVariables.value.commonNames || [])
 const lastCopied = ref('')
-// 变量名样式映射
-const styleColorMap = {
-  smallHump: '#4caf50', // 小驼峰 绿色
-  bigHump: '#2196f3',   // 大驼峰 蓝色
-  smallSnake: '#ff9800', // 小蛇形 橙色
-  bigSnake: '#e91e63',   // 大蛇形 粉色
-  spinal: '#9c27b0',     // 脊柱 紫色
-  description: '#607d8b', // 注释 灰蓝
-  default: '#90a4ae'     // 其它 灰色
-}
-
-// 取变量名样式色彩
-function getNameColor(name) {
-  if (!name) return styleColorMap.default
-  if (/^[a-z][a-zA-Z0-9]*$/.test(name)) return styleColorMap.smallHump
-  if (/^[A-Z][a-zA-Z0-9]*$/.test(name)) return styleColorMap.bigHump
-  if (/^[a-z0-9]+(_[a-z0-9]+)+$/.test(name)) return styleColorMap.smallSnake
-  if (/^[A-Z0-9]+(_[A-Z0-9]+)+$/.test(name)) return styleColorMap.bigSnake
-  if (/^[a-z0-9]+(-[a-z0-9]+)+$/.test(name)) return styleColorMap.spinal
-  return styleColorMap.default
-}
 
 const copyCommonName = (name) => {
   if (copy.text('常用命名', name)) {
@@ -120,32 +99,34 @@ const copyCommonName = (name) => {
 <style scoped>
 .common-names-bottom {
   width: 100%;
-  max-width: 900px;
+  max-width: 1200px;
   margin: 20px auto 0 auto;
   display: flex;
   flex-wrap: wrap;
   gap: 8px 14px;
   justify-content: center;
   align-items: center;
-  min-height: 24px;
-  padding: 0 0 6px 0;
+  min-height: 2px;
+  padding: 0 0 2px 0;
   box-sizing: border-box;
 }
 
 .common-name-tag {
   font-size: 13px;
   border-radius: 12px !important;
-  padding: 2px 16px !important;
-  transition: box-shadow 0.18s, transform 0.18s;
+  padding: 6px 6px !important;
+  transition: box-shadow 0.18s, transform 0.18s, background 0.18s, color 0.18s;
   box-shadow: 0 1px 6px 0 rgba(33, 150, 243, 0.07);
-  background: #232f3e;
-  border: none !important;
+  /* 颜色变量由 theme.js 动态注入 */
+  background: var(--varBook-tag-bg) !important;
   color: #2196f3 !important;
+  border: none !important;
+  cursor: pointer;
+  user-select: all;
 }
 
 .common-name-tag:hover {
-  background: #2196f3 !important;
-  color: #fff !important;
+  background: var(--varBook-tag-hover-bg) !important;
   transform: translateY(-3px) scale(1.07);
   box-shadow: 0 4px 16px 0 rgba(33, 150, 243, 0.18);
   z-index: 2;

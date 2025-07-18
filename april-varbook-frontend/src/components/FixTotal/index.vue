@@ -21,10 +21,10 @@ onMounted(async () => {
       已累计翻译 {{ formatNumber(totalCharAct) }} 优质变量字符长度
     </div>
     <div class="tips-bottom">
-      <el-link class="tips-by" href="https://www.mobaijun.com" target="_blank">
-        Powered by：mobaijun
+      <el-link class="translate-powered" href="https://www.mobaijun.com" target="_blank">
+        © {{ new Date().getFullYear() }} mobaijun · 代码改变世界
       </el-link>
-      <span class="busuanzi">
+      <span class="tips-bottom">
         ｜本站总访问量 <span id="busuanzi_site_pv"></span> 次 ｜
         本站访客数 <span id="busuanzi_site_uv"></span> 人
       </span>
