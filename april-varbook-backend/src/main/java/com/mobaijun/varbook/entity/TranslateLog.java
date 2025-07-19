@@ -9,6 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.io.Serial;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -94,4 +95,10 @@ public class TranslateLog implements Serializable {
     @Column(name = "error_msg")
     @Schema(title = "错误信息（失败时记录）")
     private String errorMsg;
+
+    /**
+     * 创建时间
+     */
+    @Column(name = "create_time", updatable = false, columnDefinition = "timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间'")
+    private LocalDateTime createTime = LocalDateTime.now();
 }
