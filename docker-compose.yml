@@ -1,0 +1,57 @@
+services:
+  mysql:
+    image: mysql:8.0.40-debian        # MySQL 官方镜像
+    container_name: mysql8            # 容器名称
+    restart: always                   # 自动重启策略
+    privileged: true                  # 提升容器权限，允许更多底层操作（如系统时间同步）
+    environment:
+      - MYSQL_ROOT_PASSWORD=root      # 设置 root 用户密码
+    ports:
+      - "3307:3306"                   # 宿主机 3307 映射到容器 3306
+    volumes:
+      - ./mysql/data:/var/lib/mysql:rw        # 数据目录持久化
+      - ./mysql/conf/conf.d:/etc/mysql/conf.d/:rw  # 配置文件挂载（my.cnf 等）
+      - ./mysql/log:/var/log/mysql/:rw        # 日志目录挂载
+      - /etc/localtime:/etc/localtime:ro      # 宿主机时间同步，保持时区一致
+    networks:
+      - devops
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'                 # 最大可用 CPU 限制
+          memory: 4096M               # 最大内存限制
+        reservations:
+          cpus: '1.0'                 # 保留 CPU
+          memory: 2048M               # 保留内存
+      # ⚠️ 注意：deploy 只在 Swarm 模式下生效，非 swarm 可忽略
+
+  varbook:
+    image: mobaijun/varbook:latest    # 变量翻译镜像
+    container_name: varbook
+    restart: always
+    ports:
+      - "8890:9090"                   # 服务端口
+    environment:
+      - NIUTRANS_API_KEY=09b2c5c4**************2f37b3  # 第三方翻译服务 API Key（示例脱敏）
+      - SPRING_PROFILES_ACTIVE=docker                 # Spring Boot 使用 docker 环境配置
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql8/apri_varbook?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+    volumes:
+      - /etc/localtime:/etc/localtime:ro             # 保持时区一致
+    networks:
+      - devops
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+        reservations:
+          cpus: '0.5'
+          memory: 256M
+
+# 🔧 自定义网络定义（引用已有或自动创建）
+networks:
+  devops:
+    name: devops          # 显式命名为 devops，可与已有网络对接
+    driver: bridge        # 使用 bridge 驱动（默认）
